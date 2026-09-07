@@ -2,9 +2,12 @@
 
 > A finance-focused web application that helps salaried individuals in India estimate income tax, compare the Old and New Tax Regimes, and generate a shareable PDF summary.
 
+**🚀 [Live Demo — Indian Tax Calculator (FY 2025-26)](https://tax-calculator-app-wugm.vercel.app/)**
+
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://tax-calculator-app-wugm.vercel.app/)
 
 ## Why I built this
 
@@ -86,11 +89,55 @@ The result is designed around a practical question:
 
 > **Which regime is better for me, and approximately how much tax will I pay?**
 
-## AI-assisted development
+## 🤖 AI-Native / Vibe-Coded Development
 
-This was one of my early **AI-assisted application development projects**. I used AI tools during the development process for tasks such as product planning, implementation support, UI iteration, debugging, and refining the application workflow.
+This was one of my first **AI-native application development projects**, built using a "vibe coding" workflow.
 
-The project demonstrates how I use AI as an engineering productivity tool while keeping the important domain logic explicit in the codebase.
+I used **Google Gemini Pro through Antigravity** as the primary development partner. Instead of manually implementing the entire application from scratch, I drove development through natural-language prompts, product requirements, financial rules, expected behavior, iterative feedback, debugging requests, UI refinement, and feature requests.
+
+My primary contribution was defining the **business problem, finance-domain requirements, user experience, expected behavior, acceptance criteria, and validation needs**, while AI generated, modified, debugged, and refined much of the implementation.
+
+The important part of the workflow was not simply asking AI to "build an app." It was an iterative process of specifying the requirement, reviewing the result, identifying gaps or incorrect behavior, prompting targeted changes, running the application, validating the calculations and UX, and repeating the cycle.
+
+### Development workflow
+
+```text
+Business Problem
+      ↓
+Research & Requirements
+      ↓
+Financial Rules + Expected Behaviour
+      ↓
+Prompts / Product Specifications
+      ↓
+Gemini Pro + Antigravity
+      ↓
+Generated Implementation
+      ↓
+Run / Inspect / Test
+      ↓
+Identify Issues & Edge Cases
+      ↓
+Prompt-Based Refinement
+      ↓
+Validate Tax Calculations & UX
+      ↓
+Deploy
+```
+
+### What this project demonstrates
+
+- Translating a finance problem into structured software requirements
+- Researching and representing domain rules in an application
+- Breaking a complex product into manageable development steps
+- Writing effective prompts and specifications for AI coding tools
+- Reviewing and iterating on AI-generated implementation
+- Debugging through an AI-assisted development loop
+- Validating business outputs instead of blindly trusting generated code
+- Using AI as a development accelerator across planning, implementation, debugging, and refinement
+- Moving from **idea → requirements → working application → iteration → deployment**
+
+This repository is **not presented as evidence of deep React expertise**. It demonstrates something different and increasingly important: the ability to take a real-world domain problem, communicate requirements precisely, use modern AI development tools effectively, evaluate their output, and drive a working application to completion.
 
 ## Architecture
 
@@ -125,15 +172,17 @@ React UI
 
 ## Tech stack
 
-| Area | Technology |
-|---|---|
-| Frontend | React |
-| Build tool | Vite |
-| Styling | Tailwind CSS |
-| Language | JavaScript / JSX |
-| State management | React `useState` |
-| PDF / document generation | jsPDF + html2canvas |
-| Tax logic | Custom JavaScript calculation engine |
+| Area | Technology | How it was used |
+|---|---|---|
+| Frontend | React | AI-assisted application implementation and iterative refinement |
+| Build tool | Vite | Development and production build tooling |
+| Styling | Tailwind CSS | AI-assisted UI implementation and refinement |
+| Language | JavaScript / JSX | Application and calculation logic |
+| State management | React `useState` | Guided application flow and user-input state |
+| PDF / document generation | jsPDF + html2canvas | Generate a shareable tax summary |
+| Tax logic | Custom JavaScript calculation engine | Explicit finance-domain calculations |
+| AI development | Google Gemini Pro + Antigravity | Planning, implementation, debugging, refinement, and iteration |
+| Deployment | Vercel | Public live application deployment |
 
 ## Project structure
 
@@ -174,6 +223,12 @@ npm run build
 npm run preview
 ```
 
+## Deployment
+
+The application is deployed as a public web application on **Vercel**.
+
+**Live application:** [tax-calculator-app-wugm.vercel.app](https://tax-calculator-app-wugm.vercel.app/)
+
 ## What I learned
 
 This project helped me move beyond building a UI and work through a domain-driven application where correctness of business rules matters.
@@ -186,7 +241,9 @@ Key learning areas:
 - Handling conditional deductions and exemptions
 - Comparing alternative business outcomes from the same input data
 - Generating a practical document from application results
-- Using AI throughout the software-development lifecycle without hiding the underlying implementation
+- Using AI throughout the software-development lifecycle
+- Writing requirements and prompts that guide AI toward a specific business outcome
+- Reviewing and validating AI-generated implementation rather than treating AI output as automatically correct
 
 ## Future improvements
 
@@ -197,8 +254,8 @@ Potential next steps include:
 - Validation against a larger set of official examples
 - Better treatment of additional income and capital-gain scenarios
 - Automated regression tests whenever tax rules change
-- Deployment with a public demo
 - Accessibility and mobile UX improvements
+- A more formal test suite for AI-generated changes
 
 ## Disclaimer
 
