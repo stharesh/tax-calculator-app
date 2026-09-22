@@ -1,204 +1,150 @@
 # TaxClarity — Indian Income Tax Calculator
 
-> A finance-focused web application that helps salaried individuals in India estimate income tax, compare the Old and New Tax Regimes, and generate a shareable PDF summary.
+A guided tax-planning application for salaried individuals in India. Enter your financial details, estimate tax under the Old and New Tax Regimes, compare the results, and generate a shareable PDF summary.
 
 **🚀 [Live Demo — Indian Tax Calculator (FY 2025-26)](https://tax-calculator-app-wugm.vercel.app/)**
 
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://tax-calculator-app-wugm.vercel.app/)
+> **Important:** TaxClarity is an educational and estimation tool, not professional tax advice. Tax rules can change. Verify results against current guidance from the Income Tax Department of India or consult a qualified Chartered Accountant before making financial decisions or filing a tax return.
 
-## Why I built this
+## What Problem Does It Solve?
 
-Tax planning is often difficult to understand because the final decision depends on salary, deductions, investments, exemptions, age, other income, capital gains, and TDS. I built TaxClarity to turn that multi-step calculation into a guided experience and present the result in plain language.
+Tax calculations can become difficult to navigate because the result depends on many inputs — salary, other income, HRA, investments, insurance, home loans, TDS, capital gains, and the selected tax regime.
 
-The project combines **finance-domain rules, deterministic calculation logic, user-focused UI, and document generation** in one application.
+TaxClarity turns that complexity into a guided experience and presents the outcome in a form that is easier to understand and compare.
 
-## What it does
+## What You Can Do
 
-- Collects financial information through a guided multi-step flow
-- Calculates estimated tax under the **Old Tax Regime** and **New Tax Regime**
-- Considers salary and multiple income sources
-- Handles HRA-related inputs and exemptions
-- Supports common investment and insurance deductions under the Old Regime
-- Handles home-loan interest and TDS inputs
-- Supports specified equity/property capital-gain scenarios
-- Calculates rebates, surcharge and cess where implemented by the tax engine
-- Compares the regimes and identifies the lower-tax option
-- Produces a PDF summary that can be saved or shared with a Chartered Accountant or finance professional
+### Guided Tax Calculation
 
-## Example user journey
+Instead of presenting users with one large tax form, the application walks through the information step by step.
 
-```text
-Financial Year
-      ↓
-Age & Salary
-      ↓
-Salary Components
-      ↓
-Other / Side Income
-      ↓
-Capital Gains
-      ↓
-Rent & HRA
-      ↓
-Investments & Insurance
-      ↓
-Home Loan & TDS
-      ↓
-Tax Calculation Engine
-      ↓
-Old Regime vs New Regime
-      ↓
-Recommendation + PDF Summary
-```
+Users can provide relevant details about:
 
-## Tax calculation engine
+- Financial year and age group
+- Salary and salary components
+- Other and side income
+- Capital gains
+- Rent and HRA
+- Tax-saving investments
+- Health insurance
+- Home loans
+- TDS
 
-The core calculation logic is separated from the UI in [`src/taxEngine.js`](src/taxEngine.js).
+### Compare Old vs New Regime
 
-The engine uses pure calculation functions and centralizes tax-related constants in [`src/constants.js`](src/constants.js). This separation makes the financial rules easier to inspect, test, and update independently of the React components.
+The application calculates the estimated tax under both supported regimes using the same financial information.
 
-Key calculation areas include:
+The results make it easy to see:
 
-- Gross income calculation
-- Taxable income calculation
-- Standard deduction
-- Old/New regime slab calculations
-- HRA exemption
-- Section 80C deductions
-- Section 80D deductions
+- Estimated tax under each regime
+- Difference between the two outcomes
+- Which regime produces the lower estimated tax for the entered scenario
+- Potential savings from the comparison
+
+### Handle Common Tax Inputs
+
+The calculation flow supports a range of scenarios, including:
+
+- Standard deductions
+- HRA-related calculations
+- Section 80C investments
+- Health insurance deductions
 - NPS-related deductions
-- Home-loan interest deduction
-- Section 80TTA / 80TTB treatment
-- Capital-gain tax treatment for supported scenarios
-- Section 87A rebate
-- Surcharge
-- Marginal relief logic
-- Health & Education Cess
-- TDS and final payable/refund presentation
+- Home-loan interest
+- Savings and deposit interest
+- Supported equity and property capital-gain scenarios
+- Rebates, surcharge and cess
+- TDS and estimated refund/payable position
 
-> **Important:** Tax legislation changes over time. The current implementation is tied to the financial year documented in the source code and should be reviewed against official tax guidance before being used for an actual filing or financial decision.
+### Generate a Shareable Summary
 
-## Product design
+After completing the calculation, users can generate a PDF summary of the results.
 
-The application intentionally uses a guided flow rather than presenting users with one large tax form. The current React application breaks the experience into dedicated steps for financial year, age, salary, income, capital gains, rent/HRA, investments, insurance, home loans, TDS, calculation, and results.
+The summary can be saved or shared for discussion with a Chartered Accountant or other finance professional.
 
-The result is designed around a practical question:
+## User Journey
 
-> **Which regime is better for me, and approximately how much tax will I pay?**
+~~~text
+Your Financial Details
+        ↓
+Income & Salary
+        ↓
+Other / Side Income
+        ↓
+Capital Gains
+        ↓
+Rent & HRA
+        ↓
+Investments & Insurance
+        ↓
+Home Loan & TDS
+        ↓
+Tax Calculation
+        ↓
+Old Regime vs New Regime
+        ↓
+Tax Summary
+        ↓
+Download / Share PDF
+~~~
 
-## 🤖 AI-Native / Vibe-Coded Development
+The goal is to turn a complicated calculation into a clear sequence of questions followed by an understandable result.
 
-This was one of my first **AI-native application development projects**, built using a "vibe coding" workflow.
+## Product Experience
 
-I used **Google Gemini Pro through Antigravity** as the primary development partner. Instead of manually implementing the entire application from scratch, I drove development through natural-language prompts, product requirements, financial rules, expected behavior, iterative feedback, debugging requests, UI refinement, and feature requests.
+The application is designed around a practical question:
 
-My primary contribution was defining the **business problem, finance-domain requirements, user experience, expected behavior, acceptance criteria, and validation needs**, while AI generated, modified, debugged, and refined much of the implementation.
+> **How much tax might I pay, and which supported tax regime results in the lower estimated tax for my situation?**
 
-The important part of the workflow was not simply asking AI to "build an app." It was an iterative process of specifying the requirement, reviewing the result, identifying gaps or incorrect behavior, prompting targeted changes, running the application, validating the calculations and UX, and repeating the cycle.
+The experience therefore emphasizes:
 
-### Development workflow
+- Simple step-by-step data collection
+- Clear progress through the calculation
+- A direct comparison of the two regimes
+- A concise result after completing the required inputs
+- A downloadable summary for further discussion
 
-```text
-Business Problem
-      ↓
-Research & Requirements
-      ↓
-Financial Rules + Expected Behaviour
-      ↓
-Prompts / Product Specifications
-      ↓
-Gemini Pro + Antigravity
-      ↓
-Generated Implementation
-      ↓
-Run / Inspect / Test
-      ↓
-Identify Issues & Edge Cases
-      ↓
-Prompt-Based Refinement
-      ↓
-Validate Tax Calculations & UX
-      ↓
-Deploy
-```
+## Calculation Engine
 
-### What this project demonstrates
+The financial rules are separated from the user interface in src/taxEngine.js, with tax-related constants maintained separately.
 
-- Translating a finance problem into structured software requirements
-- Researching and representing domain rules in an application
-- Breaking a complex product into manageable development steps
-- Writing effective prompts and specifications for AI coding tools
-- Reviewing and iterating on AI-generated implementation
-- Debugging through an AI-assisted development loop
-- Validating business outputs instead of blindly trusting generated code
-- Using AI as a development accelerator across planning, implementation, debugging, and refinement
-- Moving from **idea → requirements → working application → iteration → deployment**
+The calculation engine covers the supported income, deduction, exemption, regime, capital-gain, rebate, surcharge, cess and TDS scenarios.
 
-This repository is **not presented as evidence of deep React expertise**. It demonstrates something different and increasingly important: the ability to take a real-world domain problem, communicate requirements precisely, use modern AI development tools effectively, evaluate their output, and drive a working application to completion.
+This separation allows the product experience and the underlying financial rules to be maintained independently.
 
-## Architecture
+## AI-Assisted Development
 
-```text
-React UI
-  │
-  ├── Guided input components
-  │       └── Collect financial data
-  │
-  ├── Application state
-  │       └── User inputs + calculation state
-  │
-  ├── Tax Engine
-  │       ├── Income calculations
-  │       ├── Deductions / exemptions
-  │       ├── Old Regime
-  │       ├── New Regime
-  │       ├── Capital gains
-  │       └── Rebate / surcharge / cess
-  │
-  └── Results & PDF generation
-          └── Shareable tax summary
-```
+TaxClarity was built using an **AI-assisted / vibe-coding workflow**.
 
-### Design characteristics
+AI was used extensively for implementation, iteration, debugging and UI refinement, while development was driven by the product requirements, financial-domain rules, expected behavior and validation of the resulting application.
 
-- **Client-side:** calculations run in the browser
-- **No login required:** designed as a lightweight utility
-- **No backend dependency:** user inputs are not sent to a server by the application architecture
-- **Deterministic rules:** financial calculations are represented explicitly in JavaScript
-- **Componentized UI:** individual stages of the user journey are separated into React components
+The project demonstrates taking a domain-specific idea through:
 
-## Tech stack
+~~~text
+Problem
+  ↓
+Requirements
+  ↓
+Financial Rules
+  ↓
+AI-Assisted Implementation
+  ↓
+Testing & Validation
+  ↓
+Iteration
+  ↓
+Deployment
+~~~
 
-| Area | Technology | How it was used |
-|---|---|---|
-| Frontend | React | AI-assisted application implementation and iterative refinement |
-| Build tool | Vite | Development and production build tooling |
-| Styling | Tailwind CSS | AI-assisted UI implementation and refinement |
-| Language | JavaScript / JSX | Application and calculation logic |
-| State management | React `useState` | Guided application flow and user-input state |
-| PDF / document generation | jsPDF + html2canvas | Generate a shareable tax summary |
-| Tax logic | Custom JavaScript calculation engine | Explicit finance-domain calculations |
-| AI development | Google Gemini Pro + Antigravity | Planning, implementation, debugging, refinement, and iteration |
-| Deployment | Vercel | Public live application deployment |
+The emphasis is on the resulting working product and the process of refining it against real-world requirements.
 
-## Project structure
+## Live Application
 
-```text
-src/
-├── components/
-│   └── steps/              # Guided user-input and result screens
-├── constants.js             # Tax slabs, limits and rates
-├── taxEngine.js             # Core tax calculation logic
-├── utils.js                 # Shared utilities
-├── App.jsx                  # Application flow and state
-├── main.jsx                 # React entry point
-└── index.css                # Global styles
-```
+**[Open TaxClarity — FY 2025-26](https://tax-calculator-app-wugm.vercel.app/)**
 
-## Run locally
+The application is deployed publicly on Vercel and can be used directly in the browser.
+
+## Run Locally
 
 ### Prerequisites
 
@@ -207,62 +153,67 @@ src/
 
 ### Installation
 
-```bash
+~~~bash
 git clone https://github.com/stharesh/tax-calculator-app.git
 cd tax-calculator-app
 npm install
 npm run dev
-```
+~~~
 
 Then open the local Vite development URL shown in the terminal.
 
-### Production build
+### Production Build
 
-```bash
+~~~bash
 npm run build
 npm run preview
-```
+~~~
 
-## Deployment
+## Current Scope
 
-The application is deployed as a public web application on **Vercel**.
+TaxClarity currently focuses on supported FY 2025-26 scenarios for salaried users.
 
-**Live application:** [tax-calculator-app-wugm.vercel.app](https://tax-calculator-app-wugm.vercel.app/)
+The application is a client-side estimation tool and does not require:
 
-## What I learned
+- Login
+- A backend service
+- A database
 
-This project helped me move beyond building a UI and work through a domain-driven application where correctness of business rules matters.
+The supported tax scenarios and rules are represented in the application's calculation engine and should be reviewed whenever tax legislation changes.
 
-Key learning areas:
+## Future Improvements
 
-- Translating financial rules into deterministic program logic
-- Separating domain logic from presentation code
-- Designing multi-step data collection for complex calculations
-- Handling conditional deductions and exemptions
-- Comparing alternative business outcomes from the same input data
-- Generating a practical document from application results
-- Using AI throughout the software-development lifecycle
-- Writing requirements and prompts that guide AI toward a specific business outcome
-- Reviewing and validating AI-generated implementation rather than treating AI output as automatically correct
+Possible next steps include:
 
-## Future improvements
-
-Potential next steps include:
-
-- Automated unit-test coverage for tax-engine edge cases
-- A versioned rules layer for different financial years
-- Validation against a larger set of official examples
-- Better treatment of additional income and capital-gain scenarios
-- Automated regression tests whenever tax rules change
+- Automated test coverage for tax-engine edge cases
+- Versioned rules for multiple financial years
+- Regression testing against official examples
+- Expanded income and capital-gain scenarios
 - Accessibility and mobile UX improvements
-- A more formal test suite for AI-generated changes
+- Automated validation when tax rules change
+
+## Project Structure
+
+~~~text
+src/
+├── components/
+│   └── steps/              # Guided input and result screens
+├── constants.js            # Tax rules, limits and rates
+├── taxEngine.js            # Core calculation logic
+├── utils.js                # Shared utilities
+├── App.jsx                 # Application flow and state
+├── main.jsx                # React entry point
+└── index.css               # Global styles
+~~~
 
 ## Disclaimer
 
-**TaxClarity is an educational and estimation tool, not professional tax advice.** Tax rules, thresholds, deductions, rebates, and rates can change. Always verify calculations against current guidance from the Income Tax Department of India or consult a qualified Chartered Accountant before making financial decisions or filing a tax return.
+**TaxClarity is an educational and estimation tool, not professional tax advice.**
+
+Tax rules, thresholds, deductions, rebates and rates can change. Always verify calculations against current guidance from the Income Tax Department of India or consult a qualified Chartered Accountant before making financial decisions or filing a tax return.
 
 ## Author
 
 **Tharesh S**
 
-This project is part of my portfolio exploring **Data Analytics, Finance, AI-assisted development, automation, and practical software engineering**.
+This project is part of my portfolio exploring **Data Analytics, Finance, AI-assisted development, automation, and practical software products**.
